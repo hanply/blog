@@ -1,0 +1,69 @@
+一.完成页面布局
+	
+	首页
+
+	列表页
+
+	详情页
+
+二.虚拟主机
+
+1.打开httpd.conf里面的虚拟主机配置
+wamp/bin/apache/apache2.4.9/conf/httpd.conf
+
+# Virtual hosts
+Include conf/extra/httpd-vhosts.conf
+
+2.修改httpd-vhosts.conf
+
+<VirtualHost *:80>
+    DocumentRoot "C:/blog"	 	#根目录
+    ServerName www.blog.com  	#访问域名
+    ServerAlias blog.com 		#域名别名
+    ErrorLog "logs/blog.log"	#错误日志
+    CustomLog "logs/www.blog.log" combined
+    <Directory "C:/blog">		#文件夹
+    	#文件夹权限
+        Options Indexes FollowSymLinks ExecCGI Includes
+        AllowOverride All
+        Order Allow,Deny
+        Allow from all
+        Require all granted
+    </Directory>
+</VirtualHost>
+
+3.修改系统hosts 文件 域名指向本机
+C:\Windows\System32\drivers\etc
+
+
+三.网站配置
+config.php
+    配置项
+    都为常量
+
+db.php
+    专门放数据库处理函数
+
+func.php 
+    专门放工具函数
+
+四.分析需求,创建数据表
+
+    无限分类
+
+    HTML
+        HTML5
+        XHTML
+            三级栏目1
+            三级栏目2
+            三级栏目3
+        二级栏目2
+        二级栏目3
+    父栏目2
+    父栏目3
+
+    id   ,   pid   , name
+
+
+
+
